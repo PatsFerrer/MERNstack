@@ -1,16 +1,8 @@
-const express = require('express')
-const app = express()
+const express = require('express');
+const userRoute = require('./src/routes/user.route');
 
-// express: app.get('/rota), funcao de callback);
-/*app.get('/rota', (req, res) => {})
+const app = express();
 
-*/
+app.use('/soma', userRoute)
 
-//exemplo
-app.get('/home', (req, res) => {
-  const soma = 2 + 1;
-
-  res.send({soma: soma})
-
-})
 app.listen(3000)
