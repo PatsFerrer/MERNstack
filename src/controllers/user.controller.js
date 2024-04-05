@@ -1,7 +1,22 @@
-const soma = (req, res) => {
-    const soma = 100 + 1;
+const e = require("express");
 
-    res.send({ soma: soma })
+const create = (req, res) => {
+    const { name, username, email, password, avatar, background } = req.body;
+
+    if (!name || !username || !email || !password || !avatar || !background) {
+        res.status(400).send({ message: 'All fields required' });
+    }
+
+    res.status(201).send({
+        message: 'User created successfully',
+        user: {
+            name,
+            username,
+            email,
+            avatar,
+            background
+        }
+    })
 }
 
-module.exports = { soma };
+module.exports = { create };
