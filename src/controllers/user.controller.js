@@ -7,7 +7,7 @@ const create = async (req, res) => {
         res.status(400).send({ message: 'All fields required' });
     }
 
-    const user = await userService.create(req.body);
+    const user = await userService.createService(req.body);
 
     if(!user){
         return res.status(400).send({ message: 'Error creating User' });
@@ -26,4 +26,14 @@ const create = async (req, res) => {
     })
 }
 
-module.exports = { create };
+const findAll = async (req, res) => {
+    const users = await userService.findAllService();
+
+    if(users.lenght === 0){
+        return res.status(400).send({message: 'No users found'});
+    }
+
+    res.send(users)
+}
+
+module.exports = { create, findAll  };
